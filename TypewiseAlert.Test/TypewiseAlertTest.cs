@@ -26,7 +26,7 @@ namespace TypewiseAlert.Test
             BatteryCharacter batteryCharacter;
             batteryCharacter.coolingType = CoolingType.MED_ACTIVE_COOLING;
             batteryCharacter.brand = "ETAS";
-            TypewiseAlert.checkAndAlert(AlertTarget.TO_CONTROLLER, batteryCharacter, 20);
+            Assert.True(TypewiseAlert.checkAndAlert(AlertTarget.TO_CONTROLLER, batteryCharacter, 20) == BreachType.NORMAL);
         }
     }
 }
