@@ -24,6 +24,11 @@ namespace TypewiseAlert
         {
             public CoolingType coolingType;
             public string brand;
+            public BatteryCharacter(CoolingType coolingType, string brand)
+            {
+                this.coolingType = coolingType;
+                this.brand = brand;
+            }
         }
     }
 }
