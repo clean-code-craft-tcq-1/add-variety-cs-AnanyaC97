@@ -9,17 +9,17 @@ namespace TypewiseAlert
         int GetLowerLimit { get; }
         int GetUpperLimit { get; }
     }
-    public class CoolingPassive : ICoolingClassify
+    public class PASSIVE_COOLING : ICoolingClassify
     {
         public int GetLowerLimit { get { return 0; } }
         public int GetUpperLimit { get { return 35; } }
     }
-    public class CoolingHighActive : ICoolingClassify
+    public class HI_ACTIVE_COOLING : ICoolingClassify
     {
         public int GetLowerLimit { get { return 0; } }
         public int GetUpperLimit { get { return 45; } }
     }
-    public class CoolingMediumActive : ICoolingClassify
+    public class MED_ACTIVE_COOLING : ICoolingClassify
     {
         public int GetLowerLimit { get { return 0; } }
         public int GetUpperLimit { get { return 40; } }
@@ -28,7 +28,7 @@ namespace TypewiseAlert
     {
         void AlertBreach(BreachType breachType);
     }
-    public class AlertToController : IAlertTarget
+    public class ALERT_TO_CONTROLLER : IAlertTarget
     {
         public void AlertBreach(BreachType breachType)
         {
@@ -36,7 +36,7 @@ namespace TypewiseAlert
             Console.WriteLine("{} : {}\n", header, breachType);
         }
     }
-    public class AlertToEmail : IAlertTarget
+    public class ALERT_TO_EMAIL : IAlertTarget
     {
         public void AlertBreach(BreachType breachType)
         {
