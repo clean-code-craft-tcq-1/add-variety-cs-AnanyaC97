@@ -7,32 +7,32 @@ namespace TypewiseAlert.Test
     public class TypewiseAlertTest
     {
         [Fact]
-        public void InfersBreachAsPerLimits()
+        public void InfersBreachLowAsPerLimits()
         {
             Assert.True(TypewiseAlert.InferBreach(12, 20, 30) == BreachType.TOO_LOW);
         }
         [Fact]
-        public void InfersBreachAsPerLimits()
+        public void InfersBreachHighAsPerLimits()
         {
             Assert.True(TypewiseAlert.InferBreach(35, 20, 30) == BreachType.TOO_HIGH);
         }
         [Fact]
-        public void InfersBreachAsPerLimits()
+        public void InfersBreachNormalAsPerLimits()
         {
             Assert.True(TypewiseAlert.InferBreach(25, 20, 30) == BreachType.NORMAL);
         }
         [Fact]
-        public void ClassifyTemperatureAsPerLimits()
+        public void ClassifyTemperaturelowAsPerLimits()
         {
             Assert.True(TypewiseAlert.classifyTemperatureBreach(CoolingType.HI_ACTIVE_COOLING, -1) == BreachType.TOO_LOW);
         }
         [Fact]
-        public void ClassifyTemperatureAsPerLimits()
+        public void ClassifyTemperatureNormalAsPerLimits()
         {
             Assert.True(TypewiseAlert.classifyTemperatureBreach(CoolingType.MED_ACTIVE_COOLING, 10) == BreachType.NORMAL);
         }
         [Fact]
-        public void ClassifyTemperatureAsPerLimits()
+        public void ClassifyTemperatureHighAsPerLimits()
         {
             Assert.True(TypewiseAlert.classifyTemperatureBreach(CoolingType.PASSIVE_COOLING, 40) == BreachType.TOO_HIGH);
         }
