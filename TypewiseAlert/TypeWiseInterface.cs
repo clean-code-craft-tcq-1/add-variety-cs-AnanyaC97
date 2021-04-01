@@ -33,7 +33,7 @@ namespace TypewiseAlert
         public void AlertBreach(BreachType breachType)
         {
             const ushort header = 0xfeed;
-            Console.WriteLine("{} : {}\n", header, breachType);
+            Console.WriteLine("{0} : {1}\n", header, breachType);
         }
     }
     public class ALERT_TO_EMAIL : IAlertTarget
