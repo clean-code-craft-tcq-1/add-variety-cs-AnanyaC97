@@ -39,9 +39,7 @@ namespace TypewiseAlert.Test
         [Fact]
         public void CheckAlertAsPerLimits()
         {
-            BatteryCharacter batteryCharacter;
-            batteryCharacter.coolingType = CoolingType.MED_ACTIVE_COOLING;
-            batteryCharacter.brand = "ETAS";
+            BatteryCharacter batteryCharacter =  new BatteryCharacter(CoolingType.MED_ACTIVE_COOLING, "ETAS");
             Assert.True(TypewiseAlert.checkAndAlert(AlertTarget.ALERT_TO_CONTROLLER, batteryCharacter, 20) == BreachType.NORMAL);
         }
     }
