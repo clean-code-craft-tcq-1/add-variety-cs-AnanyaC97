@@ -37,10 +37,20 @@ namespace TypewiseAlert.Test
             Assert.True(TypewiseAlert.classifyTemperatureBreach(CoolingType.PASSIVE_COOLING, 40) == BreachType.TOO_HIGH);
         }
         [Fact]
-        public void CheckAlertAsPerLimits()
+        public void CheckAlertToController()
         {
             BatteryCharacter batteryCharacter =  new BatteryCharacter(CoolingType.MED_ACTIVE_COOLING, "ETAS");
-            Assert.True(TypewiseAlert.checkAndAlert(AlertTarget.ALERT_TO_CONTROLLER, batteryCharacter, 20) == BreachType.NORMAL);
+            TypewiseAlert.checkAndAlert(AlertTarget.ALERT_TO_CONTROLLER, batteryCharacter, 20);
+            TriggerFakeAlert fakeAlert = new TriggerFakeAlert();
+            Assert.True(fakeAlert.AlertBreach(BreachType.NORMAL));
+        }
+        [Fact]
+        public void CheckAlertToEmail()
+        {
+            BatteryCharacter batteryCharacter = new BatteryCharacter(CoolingType.MED_ACTIVE_COOLING, "ETAS");
+            TypewiseAlert.checkAndAlert(AlertTarget.ALERT_TO_EMAIL, batteryCharacter, 20);
+            TriggerFakeAlert fakeAlert = new TriggerFakeAlert();
+            Assert.True(fakeAlert.AlertBreach(BreachType.NORMAL));
         }
     }
 }
