@@ -34,12 +34,10 @@ namespace TypewiseAlert
             ICoolingClassify coolingClassify = FindObjectInstance.FindInstance(coolingType.ToString()) as ICoolingClassify;
             return InferBreach(temperatureInC, coolingClassify.GetLowerLimit, coolingClassify.GetUpperLimit);
         }
-        public static BreachType checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
+        public static void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
         {
-            BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
             IAlertTarget alert = FindObjectInstance.FindInstance(alertTarget.ToString()) as IAlertTarget;
-            alert.AlertBreach(breachType);
-            return breachType;
+            alert.AlertBreach(classifyTemperatureBreach(batteryChar.coolingType, temperatureInC));
         }
     }
 }
