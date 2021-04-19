@@ -1,7 +1,7 @@
 ﻿using System;
-using static TypewiseAlert.TypewiseConstants;
+using static TypeWiseAlert.TypewiseConstants;
 
-namespace TypewiseAlert
+namespace TypeWiseAlert
 {
     public interface ICoolingClassify
     {
