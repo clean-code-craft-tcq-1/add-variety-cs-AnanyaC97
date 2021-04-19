@@ -1,5 +1,5 @@
-﻿using System;
-namespace TypewiseAlert
+using System;
+namespace TypeWiseAlert
 {
     public class TypewiseConstants
     {
@@ -18,7 +18,8 @@ namespace TypewiseAlert
         public enum AlertTarget
         {
             ALERT_TO_CONTROLLER,
-            ALERT_TO_EMAIL
+            ALERT_TO_EMAIL,
+            ALERT_TO_CONSOLE
         };
         public struct BatteryCharacter
         {

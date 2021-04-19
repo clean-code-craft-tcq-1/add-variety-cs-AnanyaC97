@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
-using static TypewiseAlert.TypewiseConstants;
+using static TypeWiseAlert.TypewiseConstants;
 
-namespace TypewiseAlert
+namespace TypeWiseAlert
 {
-    public class TypewiseAlert
+    public class TypeWiseAlert
     {
         public class FindObjectInstance
         {
@@ -23,27 +23,21 @@ namespace TypewiseAlert
         }
         public static BreachType InferBreach(double value, double lowerLimit, double upperLimit)
         {
-            if (value < lowerLimit)
-            {
-                return BreachType.TOO_LOW;
-            }
-            if (value > upperLimit)
-            {
-                return BreachType.TOO_HIGH;
-            }
-            return BreachType.NORMAL;
+            return value < lowerLimit ? BreachType.TOO_LOW : CheckBreachLimit(value, upperLimit);
         }
-        public static BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC)
+        public static BreachType CheckBreachLimit(double value, double upperLimit)
+        {
+            return value > upperLimit ? BreachType.TOO_HIGH : BreachType.NORMAL;
+        }
+        public static BreachType ClassifyTemperatureBreach(CoolingType coolingType, double temperatureInC)
         {
             ICoolingClassify coolingClassify = FindObjectInstance.FindInstance(coolingType.ToString()) as ICoolingClassify;
             return InferBreach(temperatureInC, coolingClassify.GetLowerLimit, coolingClassify.GetUpperLimit);
         }
-        public static BreachType checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
+        public static void checkAndAlert(IAlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
         {
-            BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
-            IAlertTarget alert = FindObjectInstance.FindInstance(alertTarget.ToString()) as IAlertTarget;
-            alert.AlertBreach(breachType);
-            return breachType;
+            BreachType breachType = ClassifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
+            alertTarget.AlertBreach(breachType);
         }
     }
 }
