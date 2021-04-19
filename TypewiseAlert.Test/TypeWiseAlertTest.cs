@@ -40,19 +40,25 @@ namespace TypeWiseAlert.Test
         public void CheckAlertToController()
         {
             TypeWiseAlert.checkAndAlert(new ALERT_TO_CONTROLLER(), new BatteryCharacter(CoolingType.MED_ACTIVE_COOLING, "ETAS"), 20);
-            Assert.True(new TriggerFakeAlert().isAlertBreachMethodCalled);
+            TriggerFakeAlert fakeControllerAlert = new TriggerFakeAlert();
+            fakeControllerAlert.AlertBreach(BreachType.NORMAL);
+            Assert.True(fakeControllerAlert.isAlertBreachMethodCalled);
         }
         [Fact]
         public void CheckAlertToEmail()
         {
             TypeWiseAlert.checkAndAlert(new ALERT_TO_EMAIL(), new BatteryCharacter(CoolingType.MED_ACTIVE_COOLING, "ETAS"), 20);
-            Assert.True(new TriggerFakeAlert().isAlertBreachMethodCalled);
+            TriggerFakeAlert fakeEmailAlert = new TriggerFakeAlert();
+            fakeEmailAlert.AlertBreach(BreachType.NORMAL);
+            Assert.True(fakeEmailAlert.isAlertBreachMethodCalled);
         }
         [Fact]
         public void CheckAlertToConsole()
         {
             TypeWiseAlert.checkAndAlert(new ALERT_TO_CONSOLE(), new BatteryCharacter(CoolingType.MED_ACTIVE_COOLING, "ETAS"), 20);
-            Assert.True(new TriggerFakeAlert().isAlertBreachMethodCalled);
+            TriggerFakeAlert fakeConsoleAlert = new TriggerFakeAlert();
+            fakeConsoleAlert.AlertBreach(BreachType.NORMAL);
+            Assert.True(fakeConsoleAlert.isAlertBreachMethodCalled);
         }
         [Fact]
         public void CheckCompositeAlert()
@@ -62,7 +68,9 @@ namespace TypeWiseAlert.Test
             compositeAlerts.AddNotifierToList(new ALERT_TO_EMAIL());
             compositeAlerts.AddNotifierToList(new ALERT_TO_CONSOLE());
             TypeWiseAlert.checkAndAlert(compositeAlerts, new BatteryCharacter(CoolingType.MED_ACTIVE_COOLING, "ETAS"), 20);
-            Assert.True(new TriggerFakeAlert().isAlertBreachMethodCalled);
+            TriggerFakeAlert fakeCompositeAlert = new TriggerFakeAlert();
+            fakeCompositeAlert.AlertBreach(BreachType.NORMAL);
+            Assert.True(fakeCompositeAlert.isAlertBreachMethodCalled);
         }
     }
 }
